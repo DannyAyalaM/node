@@ -64,4 +64,51 @@ const getProducts = (req, res) => {
     })
 }
 
-module.exports = { getProducts }
+const getProductById = (req, res) => {
+    const { productId } = req.params;
+    const index = products.findIndex((item) => item.id == productId)
+    if (index !== -1) {
+        res.send({ data: products[index] })
+    } else {
+        res.status(404).send({})
+    }
+}
+
+const createProduct = (req, res) => {
+    const { name, year, color, pantone_value} = req.body
+    const newProduct = {
+        id: products.length + 1,
+        name,
+        year,
+        color,
+        pantone_value
+    };
+
+    products.push(newProduct)
+    res.send(newProduct)
+}
+
+const updateProduct = (req, res) => {
+    const id = parseInt(req.params.productId)
+    const { name, year, color, pantone_value} = req.body
+    const index = products.findIndex((item) => item.id == id)
+    if (index !== -1) {
+        products[index] = {
+            id,
+            name, 
+            year,
+            color,
+            pantone_value
+        }
+        res.send({data: products[index]})
+    } else {
+        res.status(404).send({})
+    }
+}
+
+module.exports = { 
+    getProducts,
+    getProductById,
+    createProduct,
+    updateProduct
+}
