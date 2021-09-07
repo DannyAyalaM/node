@@ -9,6 +9,9 @@ const createRoutesV1 = (app) => {
     app.get("/api/v1/products/:productId", productControllers.getProductById);
     app.post("/api/v1/products/create", productControllers.createProduct)
     app.put("/api/v1/products/:productId", productControllers.updateProduct)
+    app.patch("/api/v1/products/:productId", productControllers.partialUpdateProduct)
+
+
 
 }
 
