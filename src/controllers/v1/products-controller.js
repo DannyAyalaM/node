@@ -125,10 +125,22 @@ const partialUpdateProduct = (req, res) => {
     }
 }
 
+const deleteProductById = (req, res) => {
+    const productId = parseInt(req.params.productId);
+    const index = products.findIndex((item) => item.id = productId)
+    if(index !== -1) {
+        products.splice(index, 1)
+        res.send(products)
+    } else {
+        res.status(404).send({})
+    }
+}
+
 module.exports = { 
     getProducts,
     getProductById,
     createProduct,
     updateProduct,
-    partialUpdateProduct
+    partialUpdateProduct,
+    deleteProductById
 }

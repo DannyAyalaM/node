@@ -10,9 +10,7 @@ const createRoutesV1 = (app) => {
     app.post("/api/v1/products/create", productControllers.createProduct)
     app.put("/api/v1/products/:productId", productControllers.updateProduct)
     app.patch("/api/v1/products/:productId", productControllers.partialUpdateProduct)
-
-
-
+    app.delete("/api/v1/products/:productId", productControllers.deleteProductById)
 }
 
 module.exports = createRoutesV1
